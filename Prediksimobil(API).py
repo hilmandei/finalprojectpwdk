@@ -165,6 +165,7 @@ def hasil():
 
 @app.route('/historical', methods=['get'])
 def sejarah():
+
     qty = ['car', 'body2', 'sizeCat', 'drive2',  'engType', 'registration']
     mean = ['car', 'body2', 'sizeCat', 'drive2', 'engType', 'registration']
 
@@ -190,7 +191,7 @@ def hasilsejarah():
                 print(qty)
                 print(mean)
                 # Qty plot Figure -----------------------
-                x = df[qty].value_counts().index
+                x = df[qty].value_counts().index.astype('str')
                 y = df[qty].value_counts()
 
                 plt.clf()
@@ -200,6 +201,12 @@ def hasilsejarah():
                 plt.ylabel('Quantity')
                 plt.xlabel(f'{qty}')
                 plt.legend()
+
+                if qty != 'car':
+                    for i in range(len(x)):
+                        plt.text(i, y.iloc[i], y.iloc[i], fontsize=8, horizontalalignment='center',
+                                 verticalalignment='bottom')
+
                 plt.grid()
                 plt.tight_layout()
 
@@ -225,6 +232,12 @@ def hasilsejarah():
                 plt.ylabel('Average Price USD')
                 plt.xlabel(f'{mean}')
                 plt.legend()
+
+                if mean != 'car':
+                    for i in range(len(x1)):
+                        plt.text(i, y1[i], round(y1[i]), fontsize=8, horizontalalignment='center',
+                                 verticalalignment='bottom')
+
                 plt.tight_layout()
                 plt.grid()
                 plt.savefig('storagemobil/%s' % bb)
