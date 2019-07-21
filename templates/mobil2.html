@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Car Price Prediction</title>
+
+</head>
+
+<body style="background-size:cover" background="https://suri.pap73.org/wp-content/uploads/2017/05/polygon-26677-2560x1600.jpg">
+<div style="background-color:black;">
+<p style="padding-top:10px"></p>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning ml-3 mb-2" data-toggle="modal" data-target="#exampleModal">
+    <strong>Car's Size Info</strong> </button>
+<br>
+
+<button class="btn btn-dark ml-3 mb-2">
+<a href="http://127.0.0.1:5000/historical" > <font color="FF00CC"> Historical</font></a> </button>
+
+
+<center>
+<h2 style="color:Black; font-family: Showcard Gothic"> <u>CAR PRICE PREDICTION</u> </h2>
+
+    <img
+        src="https://www.inovex.de/blog/wp-content/uploads/2019/02/Price-Prediction-in-Online-Car-Marketplaces.png"
+        alt = '' width="800" height="450" style="border:2px solid black">
+
+    <form action="http://127.0.0.1:5000/predictionresult" method="post" style="margin-top:20px">
+        <p>
+            <strong>Car's Brand : </strong>
+            <select name="brand">
+            {% for i in brand %}
+                <option>{{i}}</option>
+            {% endfor %}
+            <option selected hidden></option>
+            </select>
+
+            <strong>Mileage : </strong> <input name="jarak" type="number" placeholder="(‘000 Km)" min=0>
+            <strong> Year : </strong> <input name="tahun" type="number" placeholder="(Production Year)" min=1959>
+            <strong>Volume : </strong> <input name="volume" type="number" placeholder="'000 cc" step=0.1 min = 0 max=7>
+        </p>
+        <p>
+            <strong> Car's Size : </strong>
+            <select name="size" >
+            {% for i in size %}
+                <option> {{i}} </option>
+            {% endfor %}
+            <option selected hidden></option>
+            </select>
+
+            <strong> Drive's Type :</strong>
+            <select name="drive">
+            {% for i in drive %}
+                <option >{{i}}</option>
+            {% endfor %}
+            <option selected hidden></option>
+            </select>
+
+            <strong>Engine's Type :</strong>
+            <select name="mesin">
+            {% for i in mesin %}
+                <option >{{i}}</option>
+            {% endfor %}
+            <option selected hidden></option>
+            </select>
+
+            <strong>Registered :</strong>
+            <select name="regis">
+            <option value="yes">Yes</option>
+            <option value="no">No‍</option>
+            <option selected hidden></option>
+            </select>
+        </p>
+       <p>
+            <input class="btn btn-dark" type="submit" value="Check Price"/>
+        </p>
+
+    </form>
+
+
+         {% if b == 'kosong' %}
+            <h4> All Parameter must be filled </h4>
+            <form action="http://127.0.0.1:5000/" method="get">
+
+                <p><input class="btn btn-danger" type="submit" value="Restart First"/></p>
+
+            </form>
+
+         {% elif b == 'isi' %}
+
+             <form action="http://127.0.0.1:5000/" method="get">
+                <p> <strong>Car Specification : </strong> <br> Brand = {{brand1}}, Mileage = {{jarak1}}, Volume = {{volume1}} L, Year = {{year1}}
+                    <br> Car Size = {{size1}}, Drive = {{drive1}}, Engine's Type = {{mesin1}}, Registered = {{regis1}}</p>
+                <h3> <strong> <u>Your Car Price : {{a}} $USD</u> </strong> </h3>
+                <p><input class="btn btn-danger" type="submit" value="Restart First"/></p>
+
+            </form>
+
+            <h4> Top 5 Recommendation Based on Your Price :</h4>
+            <table class="table my-3" style="width: 40%">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" width="25">No</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
+                  <th scope="col" >Year</th>
+                  <th scope="col" width="50">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><strong>{{rec['car'].loc[1]}}</strong></td>
+                  <td><strong>{{rec['model'].loc[1]}}</strong></td>
+                  <td><strong>{{rec['year'].loc[1]}}</strong></td>
+                  <td><strong>{{rec['mileage'].loc[1]}}</strong></td>
+
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td><strong>{{rec['car'].loc[2]}}</strong></td>
+                  <td><strong>{{rec['model'].loc[2]}}</strong></td>
+                  <td><strong>{{rec['year'].loc[2]}}</strong></td>
+                  <td><strong>{{rec['mileage'].loc[2]}}</strong></td>
+
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td><strong>{{rec['car'].loc[3]}}</strong></td>
+                  <td><strong>{{rec['model'].loc[3]}}</strong></td>
+                  <td><strong>{{rec['year'].loc[3]}}</strong></td>
+                  <td><strong>{{rec['mileage'].loc[3]}}</strong></td>
+
+                </tr>
+              <tr>
+                  <th scope="row">4</th>
+                  <td><strong>{{rec['car'].loc[4]}}</strong></td>
+                  <td><strong>{{rec['model'].loc[4]}}</strong></td>
+                  <td><strong>{{rec['year'].loc[4]}}</strong></td>
+                  <td><strong>{{rec['mileage'].loc[4]}}</strong></td>
+
+                </tr>
+              <tr>
+                   <th scope="row">5</th>
+                   <td><strong>{{rec['car'].loc[5]}} </strong></td>
+                  <td><strong>{{rec['model'].loc[5]}} </strong></td>
+                  <td><strong>{{rec['year'].loc[5]}}</strong></td>
+                  <td><strong>{{rec['mileage'].loc[5]}} </strong></td>
+
+                </tr>
+              </tbody>
+
+            </table>
+            <div style="background-color:black ">
+            <p style="padding-top:10px"></p>
+        </div>
+         {%endif%}
+
+
+
+
+</center>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" style="width:140%">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Car Size Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <img src="{{url_for('static', filename='cartype.jpeg')}}" height="550" width="660"/>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+

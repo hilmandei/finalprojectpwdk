@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Price Historical</title>
+
+</head>
+
+<body style="background-size:cover" background="https://suri.pap73.org/wp-content/uploads/2017/05/polygon-26677-2560x1600.jpg">
+<div style="background-color:black;">
+<p style="padding-top:10px"></p>
+</div>
+
+
+<button class="btn btn-dark ml-3 mb-2">
+<a href="http://127.0.0.1:5000/" > <font color="FF00CC"> Home</font></a> </button>
+
+
+<center>
+
+  <h3>General Information</h3>
+  <p>This dataset was collected by the author from car sale advertisements for study/practice purposes in 2016.
+    Though there is couple well known car features datasets they seems quite simple and outdated.
+    <br>Car topic is really interesting. But the Author wanted to practice with real raw data which has all inconvenient moments (as NA’s for example).
+    <br>This dataset contains data for more than 9.5K cars sale in Ukraine.
+    Most of them are used cars so it opens the possibility to analyze features related to car operation.
+    <br> Based on this dataset, we try to predict Price with some features that car have.</p>
+       = = = = = = = = = = = = = = = = = = =
+
+  <p> To see more cleary what is in the dataset, lets check the two graphic comparison,
+      <br><strong> <u> Quantity Comparison and Average Price Comparison below : </u> </strong></p>
+
+  <form action="http://127.0.0.1:5000/historicalresult" method="post" style="margin-top:20px">
+        <p>
+            <strong>Quantity Vs : </strong>
+            <select name="qty">
+            {% for i in qty %}
+                <option>{{i}}</option>
+            {% endfor %}
+            <option selected hidden></option>
+            </select>
+
+            &nbsp &nbsp
+
+            <strong>Average Price Vs :</strong>
+            <select name="mean">
+            {% for i in mean %}
+                <option>{{i}}</option>
+            {% endfor %}
+            <option selected hidden></option>
+            </select>
+
+          <input class="btn btn-dark" type="submit" value="Check Graphic"/>
+        </p>
+  </form>
+    <br>
+
+  {% if b == 'kosong' %}
+            <h4> All Parameter must be selected </h4>
+            <form action="http://127.0.0.1:5000/historical" method="get">
+
+                <p><input class="btn btn-danger" type="submit" value="Clear First"/></p>
+
+            </form>
+
+  {% elif b == 'isi' %}
+
+            <img src="http://127.0.0.1:5000/plotku/{{aa}}" height="550" width="750"  style="border:2px solid black"> &nbsp
+            <img src="http://127.0.0.1:5000/plotku/{{bb}}" height="550" width="750"  style="border:2px solid black">
+
+             <form action="http://127.0.0.1:5000/historical" method="get">
+             <p><input class="btn btn-danger" type="submit" value="Clear First" style="margin-top:20px"/></p> </form>
+  {%endif%}
+
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
