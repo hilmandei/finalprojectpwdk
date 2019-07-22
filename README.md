@@ -20,5 +20,5 @@ Project Handling :
       KNeighborsRegressor = [73.38962211 76.07419294 70.45501766 71.15131212 75.11656523] 73.24 %
       DecisionTreeRegressor = [60.89754438 81.01886923 78.65963687 70.37534232 79.46281232] 74.08 %
       
-- Dari hasil pengujian maka dipilih model Random Forest Regressor. 
+- Dari hasil pengujian maka dipilih model Random Forest Regressor dengan score 87% . 
 - Dengan model tsb, feature yang paling mempengaruhi adalah CarClass, Tahun Produksi, Volume mesin, jarak tempuh kendaraan.
