@@ -4,7 +4,7 @@ Latar belakang project :
 - Project ini dibuat sebagai salah satu ujian dalam mengikuti Program Job Connector - Data Science.
 
 Project Deskripsi :
-- Tema : Prediksi Harga Mobil Bekas
+- Tema : Prediksi Harga Mobil Bekas (metode Regresi)
 - Project ini dibuat berdasarkan data penjualan mobil di Ukraina pada tahun 2016.
 - [Sumber dataset](https://www.kaggle.com/antfarol/car-sale-advertisements).
 
@@ -22,3 +22,5 @@ Project Handling :
       
 - Dari hasil pengujian maka dipilih model Random Forest Regressor dengan score 87% . 
 - Dengan model tsb, feature yang paling mempengaruhi adalah CarClass, Tahun Produksi, Volume mesin, jarak tempuh kendaraan.
+- Kemudian model dipakai untuk memprediksi harga dengan parameter input : Car brand, Jarak tempuh, Tahun produksi, volume meesin, ukuran, 
+type penggerak, type mesin (bahan bakar), register.
